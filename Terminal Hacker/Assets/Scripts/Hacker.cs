@@ -21,9 +21,9 @@ public class Hacker : MonoBehaviour {
 		Terminal.WriteLine("Press 3 for SpaceX.\n");
 		Terminal.WriteLine("Enter your selection:");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void OnUserInput(string input)
+	{
+		print(input);
 	}
 }
