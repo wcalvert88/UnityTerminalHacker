@@ -8,7 +8,7 @@ public class Hacker : MonoBehaviour {
 	int level;
 
 	enum Screen { MainMenu, Password, Win }
-	Screen currentScreen = Screen.MainMenu;
+	Screen currentScreen;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +17,7 @@ public class Hacker : MonoBehaviour {
 	}
 
 	void ShowMainMenu() {
+		currentScreen = Screen.MainMenu;
 		Terminal.ClearScreen();
 		string greeting = "Hello Wade";
 		Terminal.WriteLine(greeting);
