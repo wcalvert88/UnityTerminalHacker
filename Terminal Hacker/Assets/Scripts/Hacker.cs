@@ -6,14 +6,13 @@ public class Hacker : MonoBehaviour {
 
 	// Game State
 	int level;
-
 	enum Screen { MainMenu, Password, Win }
 	Screen currentScreen;
+	string password;
+
 	// Use this for initialization
 	void Start () {
-		
 		ShowMainMenu();
-		
 	}
 
 	void ShowMainMenu() {
@@ -34,6 +33,8 @@ public class Hacker : MonoBehaviour {
 			ShowMainMenu(); 
 		} else if (currentScreen == Screen.MainMenu) {
 			RunMainMenu(input);
+		} else if (currentScreen == Screen.Password) {
+			CheckPassword(input);
 		}
 	}
 
@@ -46,17 +47,55 @@ public class Hacker : MonoBehaviour {
 	void RunMainMenu(string input) {
 		if (input == "1") {
 			level = 1;
+			password = "easy";
 			StartGame();
 		} else if (input == "2") {
 			level = 2;
+			password = "medium";
 			StartGame();
 		} else if (input == "3") {
 			level = 3;
+			password = "difficult";
 			StartGame();
 		} else if (input == "007") {
 			Terminal.WriteLine("Please choose a valid level Mr. Bond");
 		} else {
 			Terminal.WriteLine("Please choose a valid level");
 		}
+	}
+
+	void CheckPassword(string input) {
+		if (input == password) {
+			SuccessMessage();
+		} else {
+			FailedMessage();
+		}
+		// if (level == 1) {
+		// 	if (input == "easy") {
+		// 		SuccessMessage();
+		// 	} else {
+		// 		FailedMessage();
+		// 	}
+		// } else if (level == 2) {
+		// 	if (input == "medium") {
+		// 		SuccessMessage();
+		// 	} else {
+		// 		FailedMessage();
+		// 	}
+		// } else if (level == 3) {
+		// 	if (input == "difficult") {
+		// 		SuccessMessage();
+		// 	} else {
+		// 		FailedMessage();
+		// 	}
+		// }
+	}
+
+	void SuccessMessage() {
+		Terminal.WriteLine("Congratulations you guessed the password!");
+	}
+
+	void FailedMessage() {
+		Terminal.WriteLine("Sorry you guessed incorrectly try again.");
 	}
 }
