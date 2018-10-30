@@ -9,6 +9,7 @@ public class Hacker : MonoBehaviour {
 	string[] level2Passwords = {"youtube", "calendar", "pixel", "android", "python", "drive"};
 	string[] level3Passwords = {"falcon", "rocket launch", "space trip", "booster", "visionary", "mars"};
 
+
 	// Game State
 	public int level;
 	public enum Screen { MainMenu, Password, Win };
@@ -45,22 +46,29 @@ public class Hacker : MonoBehaviour {
 
 	void StartGame() {
 		currentScreen = Screen.Password;
-		Terminal.WriteLine("You chose level " + level);
+		Terminal.ClearScreen();
+		switch(level) {
+			case 1:
+				password = level1Passwords[0];
+				break;
+			case 2:
+				password = level2Passwords[0];
+				break;
+			case 3:
+				password = level3Passwords[0];
+				break;
+			default:
+				Debug.LogError("You have chosen an invalid level!");
+				break;
+		}
 		Terminal.WriteLine("Please enter your password: ");
 	}
 
 	void RunMainMenu(string input) {
-		if (input == "1") {
-			level = 1;
-			password = level1Passwords[2];
-			StartGame();
-		} else if (input == "2") {
-			level = 2;
-			password = level2Passwords[2];
-			StartGame();
-		} else if (input == "3") {
-			level = 3;
-			password = level3Passwords[1];
+		bool isValidLevelNumber = (input == "1" || input == "2" || input == "3");
+
+		if (isValidLevelNumber) {
+			level = int.Parse(input);
 			StartGame();
 		} else if (input == "007") {
 			Terminal.WriteLine("Please choose a valid level Mr. Bond");
