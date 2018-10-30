@@ -45,17 +45,21 @@ public class Hacker : MonoBehaviour {
 	}
 
 	void StartGame() {
+		int index;
 		currentScreen = Screen.Password;
 		Terminal.ClearScreen();
 		switch(level) {
 			case 1:
-				password = level1Passwords[0];
+				index = Random.Range(0, level1Passwords.Length - 1);
+				password = level1Passwords[index];
 				break;
 			case 2:
-				password = level2Passwords[0];
+				index = Random.Range(0, level2Passwords.Length - 1);
+				password = level2Passwords[index];
 				break;
 			case 3:
-				password = level3Passwords[0];
+				index = Random.Range(0, level3Passwords.Length - 1);
+				password = level3Passwords[index];
 				break;
 			default:
 				Debug.LogError("You have chosen an invalid level!");
